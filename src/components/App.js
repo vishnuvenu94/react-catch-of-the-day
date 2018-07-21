@@ -25,7 +25,14 @@ class App extends React.Component {
     loadFishes=()=>{
         this.setState({
             fishes:sampleFishes
-        })
+        });
+
+    }
+    AddOrder=(item)=>{
+        const orders={...this.state.order};
+        orders[item]=orders[item]+1||1;
+        this.setState({order:orders});
+        console.log(this.state);
 
     }
   render() {
@@ -36,10 +43,11 @@ class App extends React.Component {
        <Header tagline="vishnu"/>
       
       <ul className="fishes">
-        {Object.keys(this.state.fishes).map(items=><Fishes key={items} load={this.state.fishes[items]}/>)}
+        {Object.keys(this.state.fishes).map(items=><Fishes key={items} load={this.state.fishes[items]}
+        index={items} AddOrder={this.AddOrder}/>)}
       </ul>
       </div>
-      <Order/>
+      <Order fishes={this.state.fishes} order={this.state.order}/>
       <Inventory changeState={this.changeState} loadFishes={this.loadFishes}/>
 
       </div>
