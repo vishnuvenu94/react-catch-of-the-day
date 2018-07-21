@@ -1,0 +1,24 @@
+import React from "react";
+
+class StorePick extends React.Component {
+  inputed = React.createRef();
+  submitFunc=event=>{
+    event.preventDefault();
+    
+    let storeName=this.inputed.value.value;
+    console.log(storeName);
+    this.props.history.push(`/store/${storeName}`);
+  
+  }
+  render() {
+    return (
+      <form className="store-selector"  onSubmit={this.submitFunc}>
+        <h2>Please Enter A Store</h2>
+        <input type="text" required placeholder="Store Name" ref={this.inputed} />
+        <button type="submit">Visit Store →</button>
+      </form>
+    );
+  }
+}
+
+export default StorePick;
