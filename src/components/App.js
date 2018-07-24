@@ -4,6 +4,7 @@ import Inventory from "./Inventory";
 import Order from "./Order";
 import sampleFishes from "../sample-fishes.js";
 import Fishes from "./fishes";
+import base from "../base";
 
 class App extends React.Component {
     state={
@@ -12,6 +13,28 @@ class App extends React.Component {
         
 
     };
+
+    componentDidMount(){
+        const getLocalStorage=localStorage.getItem(this.props.match.params.storeId)
+        console.log(getLocalStorage,"local");
+        if(getLocalStorage){
+            this.setState({
+                order:JSON.parse(getLocalStorage)
+            })
+        }
+        this.ref=base.syncState(`${this.props.match.params.storeId}`,{
+            context:this,
+            state:"fishes",
+        });
+    }
+    componentWillUnmount(){
+        base.removeBinding(this.ref);
+    }
+
+    componentDidUpdate(){
+        localStorage.setItem(this.props.match.params.storeId,JSON.stringify(this.state.order));
+        
+    }
     changeState=(fish)=>{
         let fishes={...this.state.fishes};
         fishes[`fish${Date.now()}`]=fish;

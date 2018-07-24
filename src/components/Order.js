@@ -5,6 +5,9 @@ class Order extends React.Component {
     makeOrderList=(item)=>{
         const fish=this.props.fishes[item];
         const count=this.props.order[item];
+        if(!fish){
+            return null;
+        }
         const isAvailable=fish.status==="available";
         if(!isAvailable){
             return (<li>

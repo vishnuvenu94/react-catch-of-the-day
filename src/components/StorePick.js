@@ -1,4 +1,5 @@
 import React from "react";
+import { getFunName } from "../helpers";
 
 class StorePick extends React.Component {
   inputed = React.createRef();
@@ -14,7 +15,7 @@ class StorePick extends React.Component {
     return (
       <form className="store-selector"  onSubmit={this.submitFunc}>
         <h2>Please Enter A Store</h2>
-        <input type="text" required placeholder="Store Name" ref={this.inputed} />
+        <input type="text" required placeholder="Store Name" ref={this.inputed} defaultValue={getFunName()}/>
         <button type="submit">Visit Store →</button>
       </form>
     );
