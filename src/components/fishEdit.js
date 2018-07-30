@@ -1,6 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class FishEdit extends React.Component{
+  static propTypes = {
+    fish: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      desc: PropTypes.string,
+      status: PropTypes.string,
+      price: PropTypes.number
+    }),
+    index: PropTypes.string,
+    updatedFish: PropTypes.func
+  };
 
     handleChange=event=>{
         const updatedFish={...this.props.fish};

@@ -1,10 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 class AddFish extends React.Component{
   nameReference= React.createRef();
   priceReference = React.createRef();
   statusReference = React.createRef();
   descReference = React.createRef();
   imageReference = React.createRef();
+  static propTypes = {
+    makeFish: PropTypes.func
+  };
     makeFish=(event)=>{
         event.preventDefault();
         const fish={

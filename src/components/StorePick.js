@@ -1,7 +1,12 @@
 import React from "react";
 import { getFunName } from "../helpers";
+import PropTypes from "prop-types";
 
 class StorePick extends React.Component {
+  static propTypes = {
+    history: PropTypes.object
+  };
+
   inputed = React.createRef();
   submitFunc=event=>{
     event.preventDefault();

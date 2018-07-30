@@ -5,6 +5,7 @@ import Order from "./Order";
 import sampleFishes from "../sample-fishes.js";
 import Fishes from "./fishes";
 import base from "../base";
+import PropTypes from "prop-types";
 
 class App extends React.Component {
     state={
@@ -13,16 +14,19 @@ class App extends React.Component {
         
 
     };
+    static propTypes = {
+        match: PropTypes.object
+      };
 
     componentDidMount(){
         const getLocalStorage=localStorage.getItem(this.props.match.params.storeId)
-        console.log(getLocalStorage,"local");
+       // console.log(getLocalStorage,"local");
         if(getLocalStorage){
             this.setState({
                 order:JSON.parse(getLocalStorage)
             })
         }
-        this.ref=base.syncState(`${this.props.match.params.storeId}`,{
+        this.ref=base.syncState(`${this.props.match.params.storeId}/fishes`,{
             context:this,
             state:"fishes",
         });
@@ -59,7 +63,7 @@ class App extends React.Component {
     }
 
     updateFishForm=(key,updatedFish)=>{
-        console.log("kkkkk",this.state.fishes);
+        
         const fishes={...this.state.fishes};
         fishes[key]=updatedFish;
         this.setState({fishes});
@@ -74,11 +78,12 @@ class App extends React.Component {
         const orders={...this.state.order};
         orders[item]=orders[item]+1||1;
         this.setState({order:orders});
-        console.log(this.state);
+       // console.log(this.state);
 
     }
   render() {
-      console.log(this.state);
+     // console.log(this.props.match.params.storeId,"storeid");
+      //console.log(this.state,"helooooo");
     return (
         <div className="catch-of-the-day">
         <div className="menu">
@@ -91,7 +96,8 @@ class App extends React.Component {
       </div>
       <Order fishes={this.state.fishes} order={this.state.order} orderDelete={this.orderDelete}/>
       <Inventory changeState={this.changeState} loadFishes={this.loadFishes}
-      fishes={this.state.fishes} updateFishForm={this.updateFishForm} deleteFish={this.deleteFish}/>
+      fishes={this.state.fishes} updateFishForm={this.updateFishForm} deleteFish={this.deleteFish}
+      storeId={this.props.match.params.storeId}/>
 
       </div>
     );

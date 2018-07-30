@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import StorePick from "./StorePick";
 import App from "./App";
 import NotFound from "./NotFound";
+import PropTypes from "prop-types";
 
 const Router = () => (
   <BrowserRouter>

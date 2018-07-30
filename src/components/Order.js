@@ -1,8 +1,14 @@
 import React from "react";
 import {formatPrice} from "../helpers";
 import {TransitionGroup,CSSTransition} from "react-transition-group";
+import PropTypes from "prop-types";
 
 class Order extends React.Component {
+  static propTypes = {
+    fishes: PropTypes.object,
+    order: PropTypes.object,
+    OrderDelete: PropTypes.func
+  };
     makeOrderList=(item)=>{
         const fish=this.props.fishes[item];
         const count=this.props.order[item];
