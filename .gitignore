@@ -1,5 +1,5 @@
 
-/node_modules/*
-.package-lock.json
-.security-rules.json
+node_modules
+package-lock.json
+security-rules.json
 
